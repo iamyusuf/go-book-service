@@ -28,8 +28,8 @@ func CreateBook(c *gin.Context) {
 	}
 
 	// Create book
-	book := models.Book{Title: input.Title, Author: input.Author}
-	models.DB.Create(&book)
+	book := models.NewBook(input.Title, input.Author)
+	models.DB.Create(models.NewBook(input.Title, input.Author))
 
 	c.JSON(http.StatusOK, gin.H{"data": book})
 }
