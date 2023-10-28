@@ -5,6 +5,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"ozone.com/book-service/controllers"
+	"ozone.com/book-service/controllers/middlewares"
 )
 
 func pong(c *gin.Context) {
@@ -15,6 +16,7 @@ func pong(c *gin.Context) {
 
 func DefineRoutes(r *gin.Engine) {
 	// Define and set up routes here
+	r.Use(middlewares.Logger())
 	r.GET("/ping", pong)
 	r.GET("/books", controllers.FindBooks)
 	r.POST("/books", controllers.CreateBook)
